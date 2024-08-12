@@ -1,11 +1,15 @@
-How to run the project
+## How to run the project
+
 go run cmd/main.go
 
-Problem 1: Boss Baby's Revenge
+## Problem 1: Boss Baby's Revenge
+
 [GET] {endpoint}/public/boss-baby/SSRSRR
 
-Problem 2: Superman's Chicken Rescue
+## Problem 2: Superman's Chicken Rescue
+
 [POST] {endpoint}/public/superman-chicken
+
 body : 
 {
     "n": 6,
@@ -13,8 +17,10 @@ body :
     "position": [1, 11, 30, 34, 35, 37]
 }
 
-Problem 3: Transaction Broadcasting and Monitoring Client
+## Problem 3: Transaction Broadcasting and Monitoring Client
+
 [POST] {endpoint}/public/transaction
+
 body : 
 {
     "symbol": "ETH",
