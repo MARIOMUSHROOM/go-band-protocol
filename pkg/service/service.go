@@ -10,12 +10,10 @@ type APIService struct {
 	Client *client.Client
 }
 
-// NewAPIService creates a new instance of APIService
 func NewAPIService(client *client.Client) *APIService {
 	return &APIService{Client: client}
 }
 
-// GetData fetches data from the API
 func (s *APIService) GetData(endpoint string) (*entity.TxStatus, error) {
 	var response *entity.TxStatus
 	response, err := s.Client.GetStatus(endpoint)

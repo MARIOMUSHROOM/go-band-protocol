@@ -56,7 +56,6 @@ func (c *Client) GetStatus(endpoint string) (*entity.TxStatus, error) {
 }
 
 func (c *Client) PostTransaction(endpoint string, data interface{}) (*entity.TxHash, error) {
-	// Convert the data to JSON
 	jsonData, err := json.Marshal(data)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal data: %w", err)
