@@ -3,10 +3,6 @@ package application
 import (
 	"band_protocol_go/internal/ports"
 	"bytes"
-	"encoding/json"
-	"fmt"
-	"io"
-	"net/http"
 
 	"golang.org/x/exp/slog"
 )
@@ -84,41 +80,4 @@ func (s *ActionService) MaxChickensProtected(n, k int, positions []int) int {
 		}
 	}
 	return maxProtected
-}
-
-func PostData(apiURL string, authToken string, requestData interface{}) (string, error) {
-	jsonData, err := json.Marshal(requestData)
-	if err != nil {
-		return "", fmt.Errorf("failed to marshal request data to JSON: %w", err)
-	}
-
-	req, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(jsonData))
-	if err != nil {
-		return "", fmt.Errorf("failed to create request: %w", err)
-	}
-
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("Content-Type", "application/json")
-	if authToken != "" {
-		req.Header.Set("Authorization", "Bearer "+authToken)
-	}
-
-	client := &http.Client{}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		return "", fmt.Errorf("failed to send request: %w", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("unexpected status code: %d", resp.StatusCode)
-	}
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %w", err)
-	}
-
-	return string(body), nil
 }
